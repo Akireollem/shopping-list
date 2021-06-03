@@ -1,19 +1,29 @@
-let button = document.getElementById("item-button");
-let ul = document.getElementById("items");
+const button = document.getElementById("item-button");
+const ul = document.getElementById("items");
+
+function excluirElemento(li) {
+    li.remove();
+}
 
 function criarElementos() {
-    let input = document.getElementById("item-input");
+    const input = document.getElementById("item-input");
+    const li = document.createElement("li");
+    const XButton = document.createElement("button");
+    const label = document.createElement("span")
 
-    let li = document.createElement("li");
-    let XButton = document.createElement("button")
+    label.innerHTML = input.value;
+
     XButton.innerHTML = "X";
-    li.appendChild(XButton);
-    li.innerHTML += input.value;
-    document.createTextNode(input.value) 
+    XButton.type = "button";
+    XButton.onclick = function() {
+        excluirElemento(li);
+    }
+    
+    li.appendChild(XButton); 
+    li.appendChild(label)
+
     ul.appendChild(li);
-    input.value = ""
-
-
+    input.value = "";
 }
 
 button.addEventListener("click", criarElementos)
